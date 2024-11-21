@@ -12,16 +12,13 @@ import { TransactionService } from '../transaction.service';
 })
 export class FormComponent {
   @Output() transactionAdded = new EventEmitter<any>();
-
   senderName: string = '';
   receiverName: string = '';
   amount: number = 0;
   currency: string = 'USD';
   currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
   date: string = new Date().toISOString().split('T')[0];
-
   constructor(private transactionService: TransactionService) {}
-
   onSubmit() {
     if (this.senderName && this.receiverName && this.amount) {
       const newTransaction = {
@@ -38,7 +35,6 @@ export class FormComponent {
       alert('Vui lòng nhập đầy đủ thông tin!');
     }
   }
-
   clearForm() {
     this.senderName = '';
     this.receiverName = '';

@@ -1,18 +1,16 @@
-<!-- <nav class="nav nav-pills">
-    <a class=nav-link" routerLink="/" routerLinkActive ="active">Chuyển tiền </a>
-    <a class=nav-link" routerLink="/history" routerLinkActive="active">Lịch sử giao dịch</a>
-  </nav> -->
-<nav class="nav nav-pills">
-  <a class="nav-link" routerLink="/" routerLinkActive="active">Chuyển tiền</a>
-  <a class="nav-link" routerLink="/history" routerLinkActive="active"
-    >Lịch sử giao dịch</a
-  >
-</nav>
 <div class="container mt-4">
+  <nav class="nav nav-pills">
+    <a class="nav-link" routerLink="/" routerLinkActive="active">Chuyển tiền</a>
+    <a class="nav-link" routerLink="/history" routerLinkActive="active">
+      Lịch sử giao dịch
+    </a>
+  </nav>
+
   <router-outlet></router-outlet>
 </div>
+
 <!-- <div class="container">
-    <app-form (transactionAdded)="addTransaction($event)"></app-form>
-    <hr />
-    <app-history [transactions]="transactions"> </app-history>
-  </div> -->
+  <app-form (transactionAdded)="addTransaction($event)"></app-form>
+  <hr />
+  <app-history [transactions]="transactions"> </app-history>
+</div> -->

@@ -10,14 +10,13 @@ import { TransactionService } from '../transaction.service';
   styleUrl: './history.component.css',
 })
 export class HistoryComponent {
-  transactions: any[] = [];
-  //@Input() transactions: any[] = [];
-
+  @Input() transactions: any[] = [];
+  //transactions: any[] = [];
   constructor(private transactionService: TransactionService) {
     this.transactions = this.transactionService.getTransactions();
   }
 
-  // ngOnChanges() {
-  //   console.log('Transactions updated: ', this.transactions);
-  // }
+  ngOnChanges() {
+    console.log('Transactions updated: ', this.transactions);
+  }
 }
