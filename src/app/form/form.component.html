@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Chuyển Tiền Quốc Tế</h2>
+  <form (ngSubmit)="onSubmit()" #transferForm="ngForm">
+    <div class="form-group">
+      <label for="senderName">Tên người gửi</label>
+      <input
+        type="text"
+        id="senderName"
+        class="form-control"
+        placeholder="Nhập tên người gửi"
+        [(ngModel)]="senderName"
+        name="senderName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="receiverName">Tên người nhận</label>
+      <input
+        type="text"
+        id="receiverName"
+        placeholder="Tên người nhận"
+        [(ngModel)]="receiverName"
+        name="receiverName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Số tiền</label>
+      <input
+        type="number"
+        id="amount"
+        placeholder="Nhập số tiền"
+        [(ngModel)]="amount"
+        name="amount"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Loại tiền tệ</label>
+      <select
+        id="currency"
+        class="form-control"
+        placeholder="Nhập loại tiền"
+        [(ngModel)]="currency"
+        name="currency"
+        required
+      >
+        <option *ngFor="let curr of currencies" [value]="curr">
+          {{ curr }}
+        </option>
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!transferForm.form.valid"
+    >
+      Chuyển tiền
+    </button>
+  </form>
+</div>

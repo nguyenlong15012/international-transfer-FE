@@ -1,0 +1,12 @@
+.container {
+  margin-top: 20px;
+}
+hr {
+  margin: 40px 0;
+  border: 1px solid #ccc;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: white;
+}

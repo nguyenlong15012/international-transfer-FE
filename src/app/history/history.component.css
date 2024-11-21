@@ -1,0 +1,13 @@
+.container {
+  max-width: 800px;
+  margin-top: 50px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+table th {
+  text-align: center;
+}
