@@ -11,34 +11,49 @@ import { TransactionService } from '../transaction.service';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  @Output() transactionAdded = new EventEmitter<any>();
-  senderName: string = '';
-  receiverName: string = '';
-  amount: number = 0;
-  currency: string = 'USD';
+  transaction = {
+    sender: '',
+    receiver: '',
+    amount: 0,
+    currency: 'VND',
+  };
   currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
-  date: string = new Date().toISOString().split('T')[0];
   constructor(private transactionService: TransactionService) {}
-  onSubmit() {
-    if (this.senderName && this.receiverName && this.amount) {
-      const newTransaction = {
-        sender: this.senderName,
-        receiver: this.receiverName,
-        amount: this.amount,
-        currency: this.currency,
-        date: new Date().toISOString().split('T')[0],
-      };
-      this.transactionAdded.emit(newTransaction);
-      console.log('transactionAdded = ', this.transactionAdded);
-      this.clearForm();
-    } else {
-      alert('Vui lòng nhập đầy đủ thông tin!');
-    }
+
+  submitTransaction() {
+    this.transactionService.addTransaction({ ...this.transaction });
+    alert('Giao dịch đã được thêm vào lịch sử giao dịch!');
+
+    this.transaction = { sender: '', receiver: '', amount: 0, currency: '' };
   }
-  clearForm() {
-    this.senderName = '';
-    this.receiverName = '';
-    this.amount = 0;
-    this.currency = 'USD';
-  }
+  // @Output() transactionAdded = new EventEmitter<any>();
+  // senderName: string = '';
+  // receiverName: string = '';
+  // amount: number = 0;
+  // currency: string = 'USD';
+  // currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
+  // date: string = new Date().toISOString().split('T')[0];
+  // constructor(private transactionService: TransactionService) {}
+  // onSubmit() {
+  //   if (this.senderName && this.receiverName && this.amount) {
+  //     const newTransaction = {
+  //       sender: this.senderName,
+  //       receiver: this.receiverName,
+  //       amount: this.amount,
+  //       currency: this.currency,
+  //       date: new Date().toISOString().split('T')[0],
+  //     };
+  //     this.transactionAdded.emit(newTransaction);
+  //     console.log('transactionAdded = ', this.transactionAdded);
+  //     this.clearForm();
+  //   } else {
+  //     alert('Vui lòng nhập đầy đủ thông tin!');
+  //   }
+  // }
+  // clearForm() {
+  //   this.senderName = '';
+  //   this.receiverName = '';
+  //   this.amount = 0;
+  //   this.currency = 'USD';
+  // }
 }

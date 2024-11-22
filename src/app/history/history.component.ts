@@ -13,9 +13,14 @@ export class HistoryComponent {
   @Input() transactions: any[] = [];
   //transactions: any[] = [];
   constructor(private transactionService: TransactionService) {
-    this.transactions = this.transactionService.getTransactions();
+    //this.transactions = this.transactionService.getTransactions();
   }
 
+  ngOnInit() {
+    this.transactionService.transactions$.subscribe(
+      (data) => (this.transactions = data)
+    );
+  }
   ngOnChanges() {
     console.log('Transactions updated: ', this.transactions);
   }
