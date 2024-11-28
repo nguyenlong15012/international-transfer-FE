@@ -1,6 +1,96 @@
-<div class="container mt-5">
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h4>Chuyển tiền</h4>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="submitTransaction()">
+      <div class="row align-items-center">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="sender" class="form-label">Người gửi</label>
+            <input
+              type="text"
+              id="sender"
+              class="form-control"
+              [(ngModel)]="transaction.sender"
+              name="sender"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="receiver" class="form-label">Người nhận</label>
+            <input
+              type="text"
+              id="receiver"
+              class="form-control"
+              [(ngModel)]="transaction.receiver"
+              name="receiver"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="cif" class="form-label">Cif</label>
+            <input
+              type="number"
+              id="cif"
+              class="form-control"
+              [(ngModel)]="transaction.cif"
+              name="cif"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="amount" class="form-label">Số tiền</label>
+            <input
+              type="number"
+              id="amount"
+              class="form-control"
+              [(ngModel)]="transaction.amount"
+              name="amount"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="currency" class="form-label">Loại tiền tệ</label>
+            <select
+              id="currency"
+              class="form-control"
+              placeholder="Nhập loại tiền"
+              [(ngModel)]="transaction.currency"
+              name="currency"
+              required
+            >
+              <option *ngFor="let curr of currencies" [value]="curr">
+                {{ curr }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="date" class="form-label">Ngày</label>
+            <input
+              type="date"
+              id="date"
+              class="form-control"
+              [(ngModel)]="transaction.date"
+              name="date"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="fas fa-paper-plane"></i>Chuyển tiền
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="container mt-5">
   <h2 class="text-center mb-4">Chuyển Tiền Quốc Tế</h2>
-  <!-- <form (ngSubmit)="onSubmit()" #transferForm="ngForm"> -->
   <form (ngSubmit)="submitTransaction()">
     <div class="form-group">
       <label for="senderName">Tên người gửi</label>
@@ -56,7 +146,8 @@
     </div>
     <button type="submit">Chuyển tiền</button>
   </form>
-</div>
+</div> -->
+
 <!-- <button
   type="submit"
   class="btn btn-primary"

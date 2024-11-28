@@ -1,4 +1,37 @@
-<div class="container mt-5">
+<div class="card shadow-sm">
+  <div class="card-header bg-success text-white">
+    <h4>Lịch sử giao dịch</h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Người gửi</th>
+          <th>Người nhận</th>
+          <th>Cif</th>
+          <th>Số tiền</th>
+          <th>Loại tiền</th>
+          <th>Ngày</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.sender }}</td>
+          <td>{{ transaction.receiver }}</td>
+          <td>{{ transaction.cif }}</td>
+          <td>{{ transaction.amount | currency : "VND" }}</td>
+          <td>{{ transaction.currency }}</td>
+          <td>{{ transaction.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="transactions.length === 0" class="text-center mt-3">
+      Không có giao dịch nào.
+    </p>
+  </div>
+</div>
+
+<!-- <div class="container mt-5">
   <h2 class="text-center mb-4">Lịch sử giao dịch</h2>
   <table class="table table-striped table-bordered">
     <thead>
@@ -20,4 +53,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->

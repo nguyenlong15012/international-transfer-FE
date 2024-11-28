@@ -11,12 +11,16 @@ import { TransactionService } from '../transaction.service';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
+  date: string = new Date().toISOString().split('T')[0];
   transaction = {
     sender: '',
     receiver: '',
+    cif: null,
     amount: 0,
     currency: 'VND',
+    date: this.date,
   };
+
   currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
   constructor(private transactionService: TransactionService) {}
 
@@ -24,7 +28,14 @@ export class FormComponent {
     this.transactionService.addTransaction({ ...this.transaction });
     alert('Giao dịch đã được thêm vào lịch sử giao dịch!');
 
-    this.transaction = { sender: '', receiver: '', amount: 0, currency: '' };
+    this.transaction = {
+      sender: '',
+      receiver: '',
+      amount: 0,
+      cif: null,
+      currency: '',
+      date: '',
+    };
   }
   // @Output() transactionAdded = new EventEmitter<any>();
   // senderName: string = '';

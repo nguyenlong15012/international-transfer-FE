@@ -15,9 +15,9 @@ export class TransactionService {
 
   // private transactions: any[] = [];
 
-  // getTransactions() {
-  //   return this.transactions;
-  // }
+  getTransactions() {
+    return this.transactions;
+  }
 
   // addTransaction(transaction: any) {
   //   this.transactions.push(transaction);

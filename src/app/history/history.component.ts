@@ -10,8 +10,8 @@ import { TransactionService } from '../transaction.service';
   styleUrl: './history.component.css',
 })
 export class HistoryComponent {
-  @Input() transactions: any[] = [];
-  //transactions: any[] = [];
+  //@Input() transactions: any[] = [];
+  transactions: any[] = [];
   constructor(private transactionService: TransactionService) {
     //this.transactions = this.transactionService.getTransactions();
   }
@@ -24,4 +24,9 @@ export class HistoryComponent {
   ngOnChanges() {
     console.log('Transactions updated: ', this.transactions);
   }
+
+  //2
+  // ngOnInit() {
+  //   this.transactions = this.transactionService.getTransactions();
+  // }
 }
