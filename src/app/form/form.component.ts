@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { CurrencyService } from './../services/currency.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { TransactionService } from '../transaction.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { TransactionService } from '../transaction.service';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   date: string = new Date().toISOString().split('T')[0];
   transaction = {
     sender: '',
@@ -21,8 +23,27 @@ export class FormComponent {
     date: this.date,
   };
 
-  currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
-  constructor(private transactionService: TransactionService) {}
+  currencies: string[] = [];
+  //currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
+  constructor(
+    private transactionService: TransactionService,
+    private currService: CurrencyService
+  ) {}
+
+  ngOnInit(): void {
+    this.currService.getCurrencies().subscribe(
+      (data) => {
+        console.log('Dữ liệu nhận từ API:', data); // Log dữ liệu API trả về
+        this.currencies = data
+          .filter((currency) => currency.status) // Lọc các currency có status = true
+          .map((currency) => currency.code); // Lấy code của currency
+        console.log('Danh sách currencies:', this.currencies); // Log danh sách sau khi xử lý
+      },
+      (error) => {
+        console.error('Lỗi khi gọi API:', error); // Log lỗi nếu xảy ra
+      }
+    );
+  }
 
   submitTransaction() {
     this.transactionService.addTransaction({ ...this.transaction });
@@ -37,34 +58,4 @@ export class FormComponent {
       date: '',
     };
   }
-  // @Output() transactionAdded = new EventEmitter<any>();
-  // senderName: string = '';
-  // receiverName: string = '';
-  // amount: number = 0;
-  // currency: string = 'USD';
-  // currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
-  // date: string = new Date().toISOString().split('T')[0];
-  // constructor(private transactionService: TransactionService) {}
-  // onSubmit() {
-  //   if (this.senderName && this.receiverName && this.amount) {
-  //     const newTransaction = {
-  //       sender: this.senderName,
-  //       receiver: this.receiverName,
-  //       amount: this.amount,
-  //       currency: this.currency,
-  //       date: new Date().toISOString().split('T')[0],
-  //     };
-  //     this.transactionAdded.emit(newTransaction);
-  //     console.log('transactionAdded = ', this.transactionAdded);
-  //     this.clearForm();
-  //   } else {
-  //     alert('Vui lòng nhập đầy đủ thông tin!');
-  //   }
-  // }
-  // clearForm() {
-  //   this.senderName = '';
-  //   this.receiverName = '';
-  //   this.amount = 0;
-  //   this.currency = 'USD';
-  // }
 }
