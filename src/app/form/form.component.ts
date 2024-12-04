@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TransactionService } from '../transaction.service';
+import { TransService } from '../services/TransTest/trans.service';
 
 @Component({
   selector: 'app-form',
@@ -15,19 +16,30 @@ import { TransactionService } from '../transaction.service';
 export class FormComponent implements OnInit {
   date: string = new Date().toISOString().split('T')[0];
   transaction = {
+    transactionCode: '',
     sender: '',
     receiver: '',
     cif: null,
     amount: 0,
     currency: 'VND',
-    date: this.date,
+    holiday: this.date,
   };
 
   currencies: string[] = [];
-  //currencies: string[] = ['USD', 'EUR', 'GBP', 'VND'];
+
+  timestamp = new Date().valueOf();
+
+  transactionCode = `HT.${(new Date().getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}${new Date()
+    .getDate()
+    .toString()
+    .padStart(2, '0')}.${JSON.stringify(this.timestamp).slice(-10)}`;
+
   constructor(
     private transactionService: TransactionService,
-    private currService: CurrencyService
+    private currService: CurrencyService,
+    private transService: TransService
   ) {}
 
   ngOnInit(): void {
@@ -46,16 +58,31 @@ export class FormComponent implements OnInit {
   }
 
   submitTransaction() {
-    this.transactionService.addTransaction({ ...this.transaction });
-    alert('Giao dịch đã được thêm vào lịch sử giao dịch!');
+    this.transaction.transactionCode = this.transactionCode;
+    this.transService.SaveTransaction(this.transaction).subscribe(
+      (response) => {
+        console.log('Response from backend:', response);
+      },
+      (error) => {
+        console.error('Error from backend:', error);
+      }
+    );
 
+    this.transactionService.addTransaction({ ...this.transaction });
+    console.log('Giao dịch đã được thêm vào lịch sử giao dịch!');
+
+    this.resetTransaction();
+  }
+
+  resetTransaction() {
     this.transaction = {
+      transactionCode: '',
       sender: '',
       receiver: '',
       amount: 0,
       cif: null,
       currency: '',
-      date: '',
+      holiday: '',
     };
   }
 }

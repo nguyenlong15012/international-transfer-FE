@@ -10,10 +10,14 @@ import {
 import { FormComponent } from './app/form/form.component';
 import { HistoryComponent } from './app/history/history.component';
 import { provideHttpClient } from '@angular/common/http';
+import { LoginComponent } from './app/login/login.component';
+import { SearchComponent } from './app/search/search.component';
 
 const router: Routes = [
-  { path: '', component: FormComponent },
+  { path: 'transfer', component: FormComponent },
   { path: 'history', component: HistoryComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchComponent },
 ];
 
 bootstrapApplication(AppComponent, {

@@ -3,6 +3,12 @@
     <h4>Chuyển tiền</h4>
   </div>
   <div class="card-body">
+    <div class="transaction-id mb-4">
+      <h5 class="text-center">
+        Số giao dịch:
+        <!-- <strong>{{ transactionId }}</strong> -->
+      </h5>
+    </div>
     <form (ngSubmit)="submitTransaction()">
       <div class="row align-items-center">
         <div class="row">
@@ -70,13 +76,13 @@
             </select>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="date" class="form-label">Ngày</label>
+            <label for="holiday" class="form-label">Ngày</label>
             <input
               type="date"
-              id="date"
+              id="holiday"
               class="form-control"
-              [(ngModel)]="transaction.date"
-              name="date"
+              [(ngModel)]="transaction.holiday"
+              name="holiday"
               required
             />
           </div>

@@ -1,11 +1,11 @@
-/* .nav-link:hover {
+.nav-link:hover {
   text-decoration: underline;
   color: #007bff !important;
 }
 
 .table-hover tbody tr:hover {
   background-color: #f1f1f1;
-} */
+}
 
 .container {
   margin-top: 20px;
