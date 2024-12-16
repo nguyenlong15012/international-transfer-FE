@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransactionService } from '../transaction.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './history.component.html',
   styleUrl: './history.component.css',
 })

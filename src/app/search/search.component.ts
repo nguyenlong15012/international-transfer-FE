@@ -38,12 +38,6 @@ export class SearchComponent {
     );
   }
 
-  // @Output() onSearch = new EventEmitter<any>();
-
-  // submitSearch() {
-  //   this.onSearch.emit(this.searchTrans);
-  // }
-
   resetSearch() {
     this.searchTrans = {
       transactionCode: '',

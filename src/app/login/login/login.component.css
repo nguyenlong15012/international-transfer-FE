@@ -14,6 +14,14 @@
   text-decoration: none;
 }
 
+/* Custom button styling */
+.custom-btn {
+  flex: 1; /* Đảm bảo hai nút có cùng chiều rộng */
+  max-width: 200px; /* Giới hạn chiều rộng tối đa */
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
 /* Facebook button styling */
 .facebook-button {
   background-color: #3b5998;
